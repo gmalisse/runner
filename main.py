@@ -15,6 +15,7 @@ test_font = pygame.font.Font('font/Pixeltype.ttf', 50)
 sky_surface = pygame.image.load('graphics/Sky.png').convert()
 ground_surface = pygame.image.load('graphics/ground.png').convert()
 text_surface = test_font.render('My game', False, 'Black')
+text_rect = text_surface.get_rect(center=(400, 50))
 
 snail_x_pos = 600
 snail_surface = pygame.image.load('graphics/snail/snail1.png').convert_alpha()
@@ -32,14 +33,21 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+        # if event.type == pygame.MOUSEMOTION:
+        #     if player_rect.collidepoint(event.pos):
+        #         print('collision')
 
     screen.blit(sky_surface, (0, 0))
     screen.blit(ground_surface, (0, 300))
-    screen.blit(text_surface, (300, 50))
+    screen.blit(text_surface, text_rect)
     screen.blit(player_surface, player_rect)
 
-    if player_rect.colliderect(snail_rect):
-        print('Collision')
+    # if player_rect.colliderect(snail_rect):
+    #     print('Collision')
+
+    # mouse_pos = pygame.mouse.get_pos()
+    # if player_rect.collidepoint(mouse_pos):
+    #     print(pygame.mouse.get_pressed())
 
     snail_rect.x -= 4
     if snail_rect.right <= 0:
